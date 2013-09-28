@@ -79,7 +79,11 @@ class SimpleSolution:
         return solution
                         
 def main():
-    pass
+    S = SimpleSolution("../examples/ex_operators_2.txt")
+    S.load_data()
+    numbers = [l.strip() for l in open("../examples/ex_numbers_2.txt").readlines()]
+    for n in numbers:
+        print n, S.get_solution(n)
 
 if __name__ == '__main__':
     main()
