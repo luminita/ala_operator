@@ -1,8 +1,8 @@
 """
-This file provides a class that implements the simplest solution to 
-the problem: the prices of each operators are kept in a hash-table, 
-and all the data is loaded in a list of hash tables. When searching 
-a number, each hashtable is consulted.  
+This file provides a class that implements a simple solution to the problem: the prices of the operators
+are kept in a list of dictionaries. When searching a phone number, I first search the full phone number
+in all the dictionaries, then I drop the last digit of the phone number and seach the remaining number 
+in the dictionaries where the full number was not found and so on.
 """
 import sys
 import my_exception
@@ -15,10 +15,10 @@ class SimpleSolution:
         self.operator_ids = []
 
     def load_data(self):
-        """ Load the data from the operator file; 
-        The variable self.operator_data is a list of hash tables; 
-        The variable self.operator_ids is a list of operator ids in the same order as 
-        the hash tables """
+        """ Load the data from the file giving the offers of all the operators ; 
+        The variable self.operator_data will include a list of dictionaries
+        The variable self.operator_ids will include a list of operator ids in the same order as 
+        the dictionaries  """
         try:
             in_handler = open(self.operator_file)
             line = in_handler.readline()
@@ -28,8 +28,7 @@ class SimpleSolution:
                     operator_id = line.split()[1].strip()
                     self.operator_ids.append(operator_id)
                     data = {}
-                    # each line should represent an offer, or is the start of 
-                    # a new operator 
+                    # each line gives a prefix price, or it is the start of a new operator 
                     line = in_handler.readline()
                     while line and not line.startswith("Operator"):
                         prefix = line.split()[0]
@@ -38,28 +37,29 @@ class SimpleSolution:
                         line = in_handler.readline()
                     self.operator_data.append(data)
                 else:
+                   # I just raise an exception if the file includes anything else than expected
                    raise my_exception.MyException("Incorrect operator file format") 
             in_handler.close()
         except Exception, e:
             sys.exit(str(e))
             
     def get_solution(self, phone_number):
-        """ Get the best solurion given a phonenumber; the phone number should be given as a 
+        """ Get the best solution given a phone number; the phone number should be given as a 
         string including no spaces and no other symbols other than digits 
         """
-        # keeps the best solution so far as (operator, price); it is a list in case 
-        # more than one operator has the same price
+        # keeps the best solution so far as (operator, prefix, price); 
+        # the solution is a list in case more than one operator has the same price
         solution = [(None, None, float("inf"))]
         number2search = phone_number
         # stores the indices of the operators for which the phone number was not found yet
         indices = set(range(0, len(self.operator_ids)))
         while len(number2search)>0 and len(indices)>0:
-            # this maintains the indices of the operators for which we found this number
+            # I store the indices of the operators for which the number was found
             indices2delete = [] 
             for idx in indices:
-                # search the phone number in the offer of opperator with index idx
+                # search the phone number in the offer of operator with index idx
                 if  number2search in self.operator_data[idx]:
-                    # check if this solution is better than the ones available 
+                    # check if this solution is better than the ones found before 
                     price = self.operator_data[idx][number2search]
                     if price < solution[0][2]:
                         solution = [(self.operator_ids[idx], number2search, price)]
@@ -75,6 +75,7 @@ class SimpleSolution:
         # if no solution was found return an empty list 
         if solution[0][0] == None:
             solution = []
+
         return solution
                         
 def main():
