@@ -8,11 +8,14 @@ sys.path.append(os.path.dirname(__file__).replace("tests", "ala_operator"))
 import simple_solution
 import my_exception
 
+# TODO: path should be changed to something more elegant
+# one of the tests can be broken in smaller parts 
+
 def dir_data():
     return os.path.join(os.path.dirname(__file__), "data")
 
 class TestLoadData(unittest.TestCase):
-    """ Test that the function load_data in NaiveSolution loads correctly 
+    """ Test that the function load_data in SimpleSolution loads correctly 
     an input file"""
     def setUp(self):
         unittest.TestCase.setUp(self)
@@ -23,7 +26,7 @@ class TestLoadData(unittest.TestCase):
         self.known_values_op2 = {"1":0.92, "467":1.0, "48":1.2}
 
     def test_number_operators(self):
-        """ Test that the number of operators and number of prefixed are loaded correctly"""
+        """ Test that the number of operators and prefixes are loaded correctly """
         self.assertEqual(len(self.ns.operator_data), 2)
         self.assertEqual(len(self.ns.operator_ids), 2)
         self.assertEqual(len(self.ns.operator_data[0]), 8)
@@ -54,10 +57,9 @@ class TestGetSolution(unittest.TestCase):
             "463127":[("A","4631", 0.15)], "46732125":[("B","467",1.0)]}
 
     def test_known_values(self):
-        """ The functions returns the correct solution for a few examples """
+        """ Test that the correct solution is returned for a few examples """
         for phone_number, correct_sol in self.known_solutions.iteritems():
             sol = self.ns.get_solution(phone_number)
-            print phone_number, sol, correct_sol
             self.assertEqual(len(correct_sol), len(sol))
             i = 0
             while i<len(correct_sol):
@@ -69,3 +71,5 @@ class TestGetSolution(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
+
