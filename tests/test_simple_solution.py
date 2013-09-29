@@ -4,12 +4,10 @@ Implements unit tests for the module simple_solution
 import os
 import sys
 import unittest
-sys.path.append(os.path.dirname(__file__).replace("tests", "ala_operator"))
 import simple_solution
 import my_exception
 
-# TODO: path should be changed to something more elegant
-# one of the tests can be broken in smaller parts 
+# TODO: one of the tests can be broken in smaller parts 
 
 def dir_data():
     return os.path.join(os.path.dirname(__file__), "data")

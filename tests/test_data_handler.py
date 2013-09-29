@@ -6,10 +6,7 @@ import sys
 import unittest
 import tempfile
 import shutil
-sys.path.append(os.path.dirname(__file__).replace("tests", "ala_operator"))
 import data_handler
-
-# TODO: path should be changed to something more elegant
 
 
 class TestWriteLines(unittest.TestCase):
