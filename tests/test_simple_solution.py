@@ -1,5 +1,5 @@
 """
-Implements unit tests for the module naive_solution
+Implements unit tests for the module simple_solution
 """
 import os
 import sys
