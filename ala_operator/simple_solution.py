@@ -5,6 +5,7 @@ in all the dictionaries, then I drop the last digit of the phone number and seac
 in the dictionaries where the full number was not found and so on.
 """
 import sys
+import numpy
 import my_exception
 
 
@@ -49,7 +50,7 @@ class SimpleSolution:
         """
         # keeps the best solution so far as (operator, prefix, price); 
         # the solution is a list in case more than one operator has the same price
-        solution = [(None, None, float("inf"))]
+        solution = [(None, None, numpy.inf)]
         number2search = phone_number
         # stores the indices of the operators for which the phone number was not found yet
         indices = set(range(0, len(self.operator_ids)))
