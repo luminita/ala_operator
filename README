@@ -3,76 +3,85 @@ ala_operator
 Author: Luminita Moruz
 
 
-Description: The package implements a method that, taking as input a file 
-	including a list of operators and their offers, find the cheapest 
-	operator for a given phone number 
+Description: The package implements a method that, taking as input a
+	file including a list of operators and their offers, finds the
+	cheapest operator for a given phone number
 
 
-Requirements: Python 2.7 should be installed, together with the module numpy
+Requirements: Python 2.7 should be installed, together with the module
+              numpy
 
 
 Usage: 
   Assuming the current directory is the main directory of the package:
-  python ala_operator/main.py [-h] -i operator_file -n phone_numbers [-m solving_method]
-               [-o out_file]
+  python ala_operator/main.py [-h] -i operator_file -n phone_numbers
+  [-m solving_method] [-o out_file]
   
 Flags:
-  -h, --help          show this help message and exit
-  -i operator_file    File including the operators' offers. Please check below for 
-     		      the description of the format of this file.
-  -n phone_number(s)  Phone number or file including phone numbers, one per
-                      line. Please check below for more details about the file format.
-  -m solving_method   Method to solve the problem [simple|fast], default =
-                      fast
-  -o out_file         Output file. By default the result is printed on the
-                      screen
+  -h, --help         Shows this help message and exit
+  -i operator_file   File including the operators' offers. Please check
+     		     below for the description of the format of this
+     		     file.
+  -n phone_number(s) Phone number or file including phone numbers, one
+                     per line. Please check below for more details
+                     about the file format.
+  -m solving_method  Method to solve the problem [simple|fast], default
+                     = fast
+  -o out_file        Output file. By default the result is printed on the
+                     screen
 
 
-File formats:
+File formats: 
 - operator_file: The format of the operator file should be as follows:
-  * The keyword "Operator" should be followed by a space and then an unique ID for that operator.
-  * The id of the operator should not include any spaces 
-  * Afterwards, a list of prefix, price should be give, one pair per line, space separated
-  An example:
-    Operator A
-    46 0.4
-    467 0.5
-    Operator B
-    478 0.1
-    47 0.5
-  The files ex_operators_1.txt and ex_operators_2.txt in the directory examples/ give a few examples of 
-  valid input files. 
+* The keyword "Operator" should be followed by a space and then an
+  unique ID for that operator
+* The id of the operator should not include any spaces
+* Afterwards, a list of prefix, price should be given, one pair per
+  line, space separated
+* An example:
+Operator A
+46 0.4
+467 0.5
+Operator B
+478 0.1
+47 0.5
+* The files ex_operators_1.txt and ex_operators_2.txt in the directory
+  examples/ give a few examples of valid input files.
 
-- phone_number: the phone numbers should be given one per line. Note that a phone number should 
-  contain only digits. The files ex_numbers_1.txt and ex_numbers_2.txt under the folder 
-  examples/ are examples of valid input files 
+- phone_number: the phone numbers should be given one per line. Note
+  that a phone number should contain only digits. The files
+  ex_numbers_1.txt and ex_numbers_2.txt under the folder examples/ are
+  examples of valid input files
 
 
 Notes:
-- At the moment no proper validation of the input data is performed, and the error messages 
-are not particularly informative. Please try to follow to give data in the correct format.
-- If a phone number includes other symbols than digits, it will be ignored 
+- At the moment no proper validation of the input data is performed,
+  and the error messages are not particularly informative. Please try to
+  give the data in the correct format
+- If a phone number includes other symbols than digits, it will be
+  ignored (it does not appear in the output)
 
 
-Tests:
-  A few unit and system tests were implemented, although they are by no means 
-  complete. You can run all the tests by running the script run_all_tests.sh.
-  From the directory including the file, just type in a terminal window:
-    ./run_all_tests.sh
+Tests: 
+  A few unit and system tests were implemented. You can run all the
+  tests by executing the script run_all_tests.sh. From the directory
+  including the file, just type in a terminal window:
+  ./run_all_tests.sh
  
 
 Examples:
-1. To run the program for the operators in examples/ex_operators_1.txt for the phone 
-   numbers in examples/ex_numbers_1.txt just type:
+1. To run the program for the operators in examples/ex_operators_1.txt
+   and the phone numbers in examples/ex_numbers_1.txt just type:
    
    python ala_operator/main.py -i examples/ex_operators_1.txt -n examples/ex_numbers_1.txt
    
-   If you would like to have the output printed to a file called best_offers.txt, just run:
+   If you would like to have the output printed to a file called
+   best_offers.txt, add the -o option:
     
    python ala_operator/main.py -i examples/ex_operators_1.txt -n examples/ex_numbers_1.txt -o best_offers.txt
 
-2. To run the program for one single phone number 467562353, using the operators in 
-   examples/ex_operators_2.txt, just type:
+2. To run the program for a single phone number 467562353, using the
+   operators in examples/ex_operators_2.txt, just type:
 
    python ala_operator/main.py -i examples/ex_operators_2.txt -n 467562353
  
