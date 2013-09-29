@@ -39,7 +39,7 @@ class TestCorrectInput:
     def test_many_numbers_out_file(self):
         """ Test that the correct solution is written to the output file when 
         a file including a few phone numbers is given """
-        numbers = "6736745ghjgj\n467327483\n1234" 
+        numbers = "6736745ghjgj\n467327483\n999" 
         nfile = os.path.join(self.tmp_dir, "tmp_numbers.txt")
         file_handler = open(nfile, "w")
         file_handler.write(numbers)
@@ -49,7 +49,7 @@ class TestCorrectInput:
             "-o", out_file])
         lines = open(out_file).readlines()
         if len(lines) != 3 or not lines[1].startswith("467327483\tRomaniaOperator 467 1.0") or\
-            not lines[2].startswith("1234\ttele2 1 0.9"):
+            not lines[2].startswith("999\tNo solution"):
             res = "FAIL"
         else:
             res = "OK"
