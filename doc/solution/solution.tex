@@ -29,12 +29,12 @@ Two straightforward solutions were implemented, both briefly described
 below.
 
 \subsection{Solution 1 - simple approach}
-Let $n$ be the number of operators. Since each operator may
-potentially offer a large number of prefixes, I chose to store their
-prefixes and prices as dictionaries, with prefixes as keys and prices
-as values. This implies that I store the data in a list $D = [D_1,
-  D_2, ..., D_n]$, where each $D_i$ is a dictionary storing the
-prefixes and prices of operator $i$.
+Since each operator may potentially offer a large number of prefixes,
+I chose to store their prefixes and prices as dictionaries, with
+prefixes as keys and prices as values. This implies that I store the
+data in a list $D = [D_1, D_2, ..., D_n]$, where $n$ is the number of
+operators and each $D_i$ is a dictionary storing the prefixes and
+prices of operator $i$.
 
 \vspace{0.2cm}
 
@@ -59,7 +59,7 @@ would be $O(mn)$, where $m$ is the length of the phone number.
 
 \subsection{Solution 2 - optimized approach}
 When implementing the solution above, I realized that in practice the
-phone number will be much shorter than the prefixes. Thus, instead of
+phone number will be much longer than the prefixes. Thus, instead of
 starting by searching the full word $x_1x_2 ... x_m$ in all the
 dictionaries, I start instead by searching $x_1x_2 ...x_p$, where $p$
 is the length of the longest prefix observed at any of the
@@ -71,10 +71,9 @@ In this case, the complexity is reduced to $O(np)$.
 
 
 \section{Limitations and possible improvements of current implementation}
-The solutions provided here can be improved in various ways. In
-addition, depending on the characteristics of the input data, more
-efficient solutions can be designed. Some of my own thoughts regarding
-these are given below. 
+The solutions provided here can be improved in various ways. Depending
+on the characteristics of the input data, more efficient solutions can
+be designed. Some of my own thoughts regarding these are given below.
 
 \vspace{0.2cm}
 
