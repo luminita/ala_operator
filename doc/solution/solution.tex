@@ -21,7 +21,7 @@ An algorithm should be implemented that takes as input a list of
 operators, with each operator including a collection of offers
 expressed as prefix, price. For a given phone number, the algorithm
 should output the cheapest operator that has a prefix matching that
-phone number.  When several prefixes of an operator match a number,
+phone number. When several prefixes of an operator match a number,
 the longest should be chosen.
  
 \section{Implementations}
@@ -77,11 +77,18 @@ be designed. Some of my own thoughts regarding these are given below.
 
 \vspace{0.2cm}
 
-Depending on the data, an improved implementation may include building
-one dictionary storing the information of all the operators, rather
-than $n$ separate dictionaries. Also, if a larger number of phone
-numbers are to be searched, then a dictionary including solutions for
-the prefixes searched up to that point can be maintained. 
+If a very large number of operators are available, it may be more
+convenient to store all the prefixes and prices in one large
+dictionary. This way, instead of searching in several dictionaries, we
+search in just one dictionary. This would also be more space
+efficient, since a prefix is stored just once.
+
+\vspace{0.2cm} 
+
+Also, if the number of phone numbers to be searched is very large,
+then a dictionary including solutions for the prefixes searched up to
+that point can be maintained. Note that this would imply that a search
+in yet another dictionary is to be performed.
 
 \vspace{0.2cm}
 
